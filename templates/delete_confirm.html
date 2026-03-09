@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-5 text-center shadow-lg">
+            <div class="mb-4">
+                <i class="fas fa-exclamation-triangle text-danger" style="font-size: 80px;"></i>
+            </div>
+            <h3 class="text-dark fw-bold mb-3">O'chirishni tasdiqlaysizmi?</h3>
+            <p class="text-secondary mb-5">Haqiqatan ham "<strong>{{ obj }}</strong>" elementini o'chirmoqchimisiz? Bu
+                amalni orqaga qaytarib bo'lmaydi.</p>
+            <form method="post" class="d-flex justify-content-center gap-3">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger px-4 py-2 fw-bold">O'CHIRISH</button>
+                <a href="{{ request.META.HTTP_REFERER|default:'/' }}" class="btn btn-secondary px-4 py-2 fw-bold">BEKOR
+                    QILISH</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

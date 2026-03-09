@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="fw-bold text-dark">Dashboard Overview</h2>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Subjects Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stats-card h-100 py-2" style="border-left-color: var(--primary);">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Subjects</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ subjects_count }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-book fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teachers Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stats-card h-100 py-2" style="border-left-color: var(--success);">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Teachers</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ teachers_count }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Students Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stats-card h-100 py-2" style="border-left-color: var(--info);">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Students</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ students_count }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-user-graduate fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Groups Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stats-card h-100 py-2" style="border-left-color: var(--warning);">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Groups</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ groups_count }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

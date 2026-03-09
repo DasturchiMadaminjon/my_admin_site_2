@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COOL ADMIN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-width: 280px;
+            --bg-color: #f5f5f5;
+            --sidebar-color: #ffffff;
+            --primary-blue: #4272d7;
+            --text-gray: #808080;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar Style */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--sidebar-color);
+            height: 100vh;
+            position: fixed;
+            border-right: 1px solid #e5e5e5;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .sidebar-logo {
+            padding: 25px 35px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        .logo-box {
+            background: #212529;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 18px;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            padding: 18px 35px;
+            color: var(--text-gray);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-blue);
+            background: transparent;
+        }
+
+        .nav-link i {
+            font-size: 18px;
+            width: 25px;
+        }
+
+        /* Header */
+        .top-navbar {
+            height: 75px;
+            background: white;
+            position: fixed;
+            top: 0;
+            left: var(--sidebar-width);
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 50px;
+            border-bottom: 1px solid #f2f2f2;
+            z-index: 999;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            background: #e5e5e5;
+            overflow: hidden;
+        }
+
+        .user-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            margin-top: 75px;
+            padding: 40px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border-radius: 10px;
+        }
+
+        .table thead th {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-weight: 500;
+        }
+
+        .table tbody td {
+            padding: 15px 25px;
+            vertical-align: middle;
+            color: #666;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        .btn-add {
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 13px;
+            border: none;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 4px;
+            border: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        .btn-edit {
+            background: #ffc107;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-box">C</div>
+            <div class="logo-text">COOL ADMIN</div>
+        </div>
+        <nav class="nav flex-column mt-4">
+            <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"
+                href="{% url 'dashboard' %}">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+            <a class="nav-link {% if 'faculties' in request.path %}active{% endif %}" href="{% url 'faculty_list' %}">
+                <i class="fas fa-university"></i> Faculty
+            </a>
+            <a class="nav-link {% if 'kafedras' in request.path %}active{% endif %}" href="{% url 'kafedra_list' %}">
+                <i class="fas fa-building"></i> Kafedra
+            </a>
+            <a class="nav-link {% if 'subjects' in request.path %}active{% endif %}" href="{% url 'subject_list' %}">
+                <i class="fas fa-book"></i> Subject
+            </a>
+            <a class="nav-link {% if 'teachers' in request.path %}active{% endif %}" href="{% url 'teacher_list' %}">
+                <i class="fas fa-chalkboard-teacher"></i> Teacher
+            </a>
+            <a class="nav-link {% if 'groups' in request.path %}active{% endif %}" href="{% url 'group_list' %}">
+                <i class="fas fa-users"></i> Group
+            </a>
+            <a class="nav-link {% if 'students' in request.path %}active{% endif %}" href="{% url 'student_list' %}">
+                <i class="fas fa-user-graduate"></i> Students
+            </a>
+        </nav>
+    </div>
+
+    <div class="top-navbar">
+        <div class="user-profile">
+            <div class="user-avatar">
+                <img src="https://ui-avatars.com/api/?name=Root&background=e5e5e5&color=666" alt="Root">
+            </div>
+            <div class="user-name">Root <i class="fas fa-chevron-down ms-1" style="font-size: 10px;"></i></div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

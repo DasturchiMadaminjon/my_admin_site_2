@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mb-5">
+    <h2 class="logo-text" style="font-size: 30px; color: #333;">{% if obj %}Update{% else %}Create{% endif %} Data</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+            <div class="card-header bg-dark text-white py-3">
+                <h5 class="mb-0 text-uppercase fw-bold"><i class="fas fa-edit me-2"></i> Ma'lumotlarni kiritish</h5>
+            </div>
+            <div class="card-body p-5">
+                <form method="post" class="needs-validation">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark fs-6">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}
+                        <div class="form-text text-muted">{{ field.help_text }}</div>
+                        {% endif %}
+                        {% if field.errors %}
+                        <div class="text-danger mt-1">{% for error in field.errors %}{{ error }}{% endfor %}</div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                    <div class="mt-5 d-flex gap-3">
+                        <button type="submit" class="btn btn-add py-3 px-5 fs-6 fw-bold shadow-sm">SAQLASH <i
+                                class="fas fa-save ms-2"></i></button>
+                        <a href="{{ request.META.HTTP_REFERER|default:'/' }}"
+                            class="btn btn-secondary py-3 px-5 fs-6 fw-bold shadow-sm">BEKOR QILISH</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
